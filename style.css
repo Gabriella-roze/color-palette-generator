@@ -50,6 +50,8 @@ table {
 }
 
 
+
+
 /* MY OWN STYLING */
 body { 
     width: 100vw;
@@ -70,5 +72,4 @@ section:last-of-type {
 .color-box {
     width: 20%;
     height: 100%;
-    background-color: bisque;
 }

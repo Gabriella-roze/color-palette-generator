@@ -10,8 +10,7 @@
 <body>
     <section>
         <label for="color-harmony-style">Choose color harmony style:</label>
-        <select id="color-harmony-style">
-            <option value="">--Please choose an option--</option>
+        <select id="color-harmony-style" onchange="selectHarmStyle(this)">
             <option value="analogous">Analogous</option>
             <option value="monochromatic">Monochromatic</option>
             <option value="triad">Triad</option>
@@ -19,7 +18,7 @@
             <option value="compound">Compound</option>
             <option value="shades">Shades</option>
         </select>
-        <label for="color">Color:</label>
+        <label for="color">Choose color:</label>
         <input type="color" id="color-picker" name="color" value="#E83285">
     </section>
     <section>
