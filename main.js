@@ -31,10 +31,10 @@ let colorPicker;
 let defaultColor = "#E83285";
 let colorRGB = 'rgb(232, 50, 133)';
 
+window.addEventListener("load", init);
 selectHarmStyle(harmStyle.value, colorConverterRGBtoHSL(colorRGB));
 
-window.addEventListener("load", init);
-function init() { 
+function init() {
    strRGBtoNumRGB(colorRGB);
    colorPicker = document.getElementById("color-picker");
    colBase.style.backgroundColor = defaultColor
@@ -59,15 +59,13 @@ function strRGBtoNumRGB(string) {
    return splitRGBNum;
 }
 
-
 function selectHarmStyle(style, colorHSL) {
    style = style.value ? style.value : style;
    if (!colorHSL) {
       colorHSL = colorConverterRGBtoHSL(colorRGB);
    }
-   
-  if (style === "analogous") {
-   console.log("analogous --")
+   if (style === "analogous") {
+      console.log("analogous --")
       calcAnalogPal(colorHSL);
 
   } else if (style === "monochromatic") {
@@ -90,56 +88,70 @@ function selectHarmStyle(style, colorHSL) {
       console.log("shades --");
       calcShaPal(colorHSL);
   }
-   
 };
 
 function calcAnalogPal(colorHSL) {
-   console.log("-->analogous: ", colorHSL);
+   // console.log("-->analogous: ", colorHSL);
    colLeft1.style.background = `hsl(${colorHSL.h + 20}, ${colorHSL.s}%, ${colorHSL.l}%)`;
    colLeft2.style.background = `hsl(${colorHSL.h + 40}, ${colorHSL.s}%, ${colorHSL.l}%)`;
    colRight1.style.background = `hsl(${colorHSL.h - 20}, ${colorHSL.s}%, ${colorHSL.l}%)`;
    colRight2.style.background = `hsl(${colorHSL.h - 40}, ${colorHSL.s}%, ${colorHSL.l}%)`;
+   displayColValues(colLeft1.style.background, colLeft2.style.background, colRight1.style.background, colRight2.style.background);
 }
+
 function calcMonochPal(colorHSL) {
    // console.log("-->analogous: ", colorHSL);
    colLeft1.style.background = `hsl(${colorHSL.h}, ${colorHSL.s}%, ${colorHSL.l + 20}%)`;
    colLeft2.style.background = `hsl(${colorHSL.h}, ${colorHSL.s}%, ${colorHSL.l + 40}%)`;
    colRight1.style.background = `hsl(${colorHSL.h}, ${colorHSL.s}%, ${colorHSL.l - 20}%)`;
    colRight2.style.background = `hsl(${colorHSL.h}, ${colorHSL.s}%, ${colorHSL.l - 40}%)`;
+   displayColValues(colLeft1.style.background, colLeft2.style.background, colRight1.style.background, colRight2.style.background);
 }
+
 function calcTriPal(colorHSL) {
    // console.log("-->analogous: ", colorHSL);
    colLeft1.style.background = `hsl(${colorHSL.h + 60}, ${colorHSL.s}%, ${colorHSL.l + 20}%)`;
    colLeft2.style.background = "#ffffff";
    colRight1.style.background = `hsl(${colorHSL.h + 120}, ${colorHSL.s}%, ${colorHSL.l - 20}%)`;
    colRight2.style.background = "#ffffff";
+   displayColValues(colLeft1.style.background, colLeft2.style.background, colRight1.style.background, colRight2.style.background);
 }
+
 function calcComplPal(colorHSL) {
    // console.log("-->analogous: ", colorHSL);
    colLeft1.style.background = `hsl(${colorHSL.h + 180}, ${colorHSL.s}%, ${colorHSL.l + 20}%)`;
    colLeft2.style.background = "#ffffff";
    colRight1.style.background = "#ffffff";
    colRight2.style.background = "#ffffff";
+   displayColValues(colLeft1.style.background, colLeft2.style.background, colRight1.style.background, colRight2.style.background);
 }
+
 function calcCompoPal(colorHSL) {
    // console.log("-->analogous: ", colorHSL);
    colLeft1.style.background = `hsl(${colorHSL.h + 180}, ${colorHSL.s}%, ${colorHSL.l + 20}%)`;
    colLeft2.style.background = `hsl(${colorHSL.h + 40}, ${colorHSL.s}%, ${colorHSL.l}%)`;
    colRight1.style.background = `hsl(${colorHSL.h - 20}, ${colorHSL.s}%, ${colorHSL.l}%)`;
    colRight2.style.background = `hsl(${colorHSL.h - 40}, ${colorHSL.s}%, ${colorHSL.l}%)`;
+   displayColValues(colLeft1.style.background, colLeft2.style.background, colRight1.style.background, colRight2.style.background);
 }
+
 function calcShaPal(colorHSL) {
    // console.log("-->analogous: ", colorHSL);
-   colLeft1.style.background = `hsl(${colorHSL.h}, ${colorHSL.s + 20}%, ${colorHSL.l + 20}%)`;
-   colLeft2.style.background = `hsl(${colorHSL.h}, ${colorHSL.s + 40}%, ${colorHSL.l}%)`;
-   colRight1.style.background = `hsl(${colorHSL.h}, ${colorHSL.s - 20}%, ${colorHSL.l}%)`;
-   colRight2.style.background = `hsl(${colorHSL.h}, ${colorHSL.s - 40}%, ${colorHSL.l}%)`;
+   colLeft1.style.background = `hsl(${colorHSL.h}, ${colorHSL.s - 10}%, ${colorHSL.l}%)`;
+   colLeft2.style.background = `hsl(${colorHSL.h}, ${colorHSL.s - 30}%, ${colorHSL.l}%)`;
+   colRight1.style.background = `hsl(${colorHSL.h}, ${colorHSL.s + 10}%, ${colorHSL.l}%)`;
+   colRight2.style.background = `hsl(${colorHSL.h}, ${colorHSL.s + 30}%, ${colorHSL.l}%)`;
+   displayColValues(colLeft1.style.background, colLeft2.style.background, colRight1.style.background, colRight2.style.background);
 }
 
-function displayColValues(params) {
-   // TODO: display new colors values in (hex?) on each color box.
-   // console.log();
-
+function displayColValues(colLeftOne, colLeftTwo, ColROne, ColRTwo) {
+   // Display color's values in on each color box.
+   console.log(colBase.style.backgroundColor);
+   colBase.innerHTML = colorRGB;
+   colLeft1.innerHTML = colLeftOne;
+   colLeft2.innerHTML = colLeftTwo;
+   colRight1.innerHTML = ColROne;
+   colRight2.innerHTML = ColRTwo;
 }
 
 function colorConverterRGBtoHSL(colorRGB) {
