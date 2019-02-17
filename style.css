@@ -61,12 +61,20 @@ section:first-of-type {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
+}
+label {
+	font-size: 1.8em;
 }
 section:last-of-type {
     width: 100vw;
-    height: 70vh;
+	height: 70vh;
 	display: flex;
+}
+select, input {
+	height: 15%;
+	width: 20%;
+	margin: 10px 0 30px;
+	border-radius: 5px;
 }
 .color-box {
     width: 20%;
